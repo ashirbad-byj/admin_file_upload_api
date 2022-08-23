@@ -1,0 +1,17 @@
+<div id="<%= dom_id myfile %>">
+  <p>
+    <strong>Filename:</strong>
+    <%= myfile.filename %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= myfile.status %>
+  </p>
+
+  <p>
+    <strong>File att:</strong>
+    <%= link_to myfile.file_att.filename, myfile.file_att if myfile.file_att.attached? %>
+  </p>
+
+</div>
