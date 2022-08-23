@@ -37,6 +37,7 @@ ActiveAdmin.register Myfile do
   end
   member_action :remove_image, method: :put do
     myfile = Myfile.find(params[:id])
+    myfile.status = "No attatchment"
     myfile.file_att.detach
     myfile.save()
     redirect_to admin_myfile_path(myfile)
@@ -58,7 +59,11 @@ ActiveAdmin.register Myfile do
       row :filename
       row :status
       row :image do |ad|
-        image_tag url_for(myfile.file_att),width:300,height:240
+        if myfile.file_att.attached?
+          image_tag url_for(myfile.file_att),width:300,height:240
+        else
+          "empty"
+        end
       end
       row :created_at
       row :updated_at

@@ -6,7 +6,8 @@ class MyfilesController < InheritedResources::Base
 
       if file_.present?
         p rails_blob_path(file_.file_att)
-        render json: file_, status: :ok
+        render json: {id: file_[:id], filename: file_[:filename], status: file_[:status],
+          file_url: url_for(file_.file_att),created_at: file_[:created_at], updated_at: file_[:updated_at]}, status: :ok
       else
         head :not_found
       end
